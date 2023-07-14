@@ -1,7 +1,7 @@
 {
-  "user": "developer",
-  "password": "supersecretpassword",
-  "host": "localhost",
+  "user": "postgres",
+  "password": "supersecret",
+  "host": "auth-api.coygazzzdyi4.ap-southeast-1.rds.amazonaws.com",
   "port": 5432,
   "database": "authapi_test"
 }
