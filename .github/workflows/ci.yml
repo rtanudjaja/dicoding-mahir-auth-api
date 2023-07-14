@@ -20,9 +20,19 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
+    - name: Step 1 - Echo out a GitHub Actions Secret to the logs
+      run: |
+        echo "The GitHub Action Secret will be masked:  "
+        echo ${{ secrets.PGHOST_TEST }}
+        echo ${{ secrets.PGDATABASE_TEST }}
+        echo ${{ secrets.PGPASSWORD_TEST }}
+        echo ${{ secrets.PGUSER_TEST }}
+        echo ${{ secrets.PGPORT_TEST }}
+        echo ${{ secrets.PGSSLMODE_TEST }}
     - name: npm install migrate and test
       run: |
         npm install
+        echo 
         npm run migrate up
         npm run test
       env:
@@ -39,5 +49,5 @@ jobs:
         PGPORT: ${{ secrets.PGPORT_TEST }}
         ACCESS_TOKEN_KEY: ${{ secrets.ACCESS_TOKEN_KEY }}
         REFRESH_TOKEN_KEY: ${{ secrets.REFRESH_TOKEN_KEY }}
-        PGSSLMODE: ${{ secrets.PGSSLMODE }}
+        PGSSLMODE: ${{ secrets.PGSSLMODE_TEST }}
         PGSSLMODE_TEST: ${{ secrets.PGSSLMODE_TEST }}
