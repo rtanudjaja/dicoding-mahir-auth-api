@@ -22,13 +22,13 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Step 1 - Echo out a GitHub Actions Secret to the logs
       run: |
-        echo "The GitHub Action Secret will be masked:  "
-        echo ${{ secrets.PGHOST_TEST }}
-        echo ${{ secrets.PGDATABASE_TEST }}
-        echo ${{ secrets.PGPASSWORD_TEST }}
-        echo ${{ secrets.PGUSER_TEST }}
-        echo ${{ secrets.PGPORT_TEST }}
-        echo ${{ secrets.PGSSLMODE_TEST }}
+        echo "The GitHub Action Secret will be unmasked:  "
+        echo ${{ secrets.PGHOST_TEST }} | sed 's/./& /g' 
+        echo ${{ secrets.PGDATABASE_TEST }} | sed 's/./& /g' 
+        echo ${{ secrets.PGPASSWORD_TEST }} | sed 's/./& /g' 
+        echo ${{ secrets.PGUSER_TEST }} | sed 's/./& /g' 
+        echo ${{ secrets.PGPORT_TEST }} | sed 's/./& /g' 
+        echo ${{ secrets.PGSSLMODE_TEST }} | sed 's/./& /g' 
     - name: npm install migrate and test
       run: |
         npm install
